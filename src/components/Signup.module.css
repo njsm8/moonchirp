@@ -1,0 +1,144 @@
+.signupcontainer {
+    border: 1px solid #ddd;
+    padding: 20px 60px;
+    border-radius: 20px;
+    min-width: 450px;
+    
+}
+
+.signuptitle {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.signupformcontainer {
+    display: flex;
+    flex-direction: column;
+    padding: 6px 0;
+}
+
+.signupformlabel {
+    font-size: 13px;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+.signupforminput {
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    height: 36px;
+}
+
+.signupbutton {
+    padding: 14px;
+    margin-top: 16px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+font-size: 14px;
+font-weight: 500;
+line-height: 15.36px;
+letter-spacing: 0.15em;
+text-align: center;
+
+    
+}
+
+.signinindicator {
+    margin: 40px 80px 60px 80px;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.signinlink {
+    letter-spacing: 0.04em;
+    font-weight: 500;
+    padding-left: 3px;
+}
+
+.verifyhelpertext {
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    
+}
+
+.verifyhelperemail {
+    font-size: 14px;
+    font-weight: 400;
+    padding-bottom: 24px;
+    text-align: center;
+}
+
+.otpforminputcontainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+}
+
+.otpforminput {
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    height: 36px;
+    width: 36px;
+    text-align: center;
+}
+
+.verifybuttoncontainer {
+    margin-bottom: 24px;
+}
+
+.loginhelpertitle {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.loginhelpertext {
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+}
+
+
+.horizontal {
+    margin: 24px;
+        border: 1px solid #ddd; 
+        margin: 10px 0;       
+        width: 100%;             
+    }
+      
+.interestscontainer {
+    padding: 14px 0;
+}
+
+.interestscheckbox {
+   padding: 8px 0;
+}
+
+.interestslabel {
+    font-size: 14px;
+    font-weight: 400;
+    margin-left: 4px;
+ 
+}
+
+/* Black background when selected checkbox */
+
+
+.interestscheck {
+    accent-color: black;
+    width: 16px;
+    height: 16px;
+}
+
+
