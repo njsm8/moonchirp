@@ -24,9 +24,33 @@ export const postRouter = createTRPCRouter({
       });
     }),
 
+   /* Sample call for create post
+    * const ctx =   // get context from your request
+    * const newUser = api.post.create.useMutation({ctx, input: {name: "John Doe"}});
+    */
+
+
   getLatest: publicProcedure.query(({ ctx }) => {
     return ctx.db.post.findFirst({
       orderBy: { createdAt: "desc" },
     });
   }),
 });
+
+export const userRouter = createTRPCRouter({
+  hello: publicProcedure
+    .input(z.object({ text: z.string() }))
+    .query(({ input }) => {
+      return {
+        greeting: `You are currently accessing ${input.text}`,
+      };
+    }),
+    getUserList: publicProcedure.query(({ ctx }) => {
+      return ctx.db.user.findMany({
+        orderBy: { createdAt: "desc" },
+      })
+    })
+   
+
+});
+

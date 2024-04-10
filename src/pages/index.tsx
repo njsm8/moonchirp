@@ -1,7 +1,4 @@
-
-
-// import { api } from "~/utils/api";
-import Login from "~/components/Login";
+import Login from '~/components/Login';
 
 export default function Home() {
   // const hello = api.post.hello.useQuery({ text: "from tRPC" });
