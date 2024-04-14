@@ -51,6 +51,64 @@ text-align: center;
     
 }
 
+.signupbuttonloading {
+    /* Disable button interaction while loading */
+    padding: 14px;
+    margin-top: 16px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+font-size: 14px;
+font-weight: 500;
+line-height: 15.36px;
+letter-spacing: 0.15em;
+text-align: center;
+    cursor: not-allowed;
+    background-color: #ccc; /* Change background color to indicate loading state */
+  
+    /* Add a spinner animation */
+    position: relative;
+  }
+  
+  .signupbuttonloading::after {
+    padding: 14px;
+    margin-top: 16px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+font-size: 14px;
+font-weight: 500;
+line-height: 15.36px;
+letter-spacing: 0.15em;
+text-align: center;
+
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: #333; /* Change border color for spinner */
+  
+    /* Animate the spinner */
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+
 .signinindicator {
     margin: 40px 80px 60px 80px;
     font-weight: 400;

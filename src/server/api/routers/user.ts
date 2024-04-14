@@ -31,7 +31,13 @@ export const userRouter = createTRPCRouter({
         },
       });
 
-      return { message: `User ${user.name} created successfully` };
+      return {
+        message: `User ${user.name} created successfully`,
+        interests: user.interests,
+        email: user.email,
+        name: user.name,
+        verified: false,
+      };
     }),
 
   login: publicProcedure
@@ -66,6 +72,7 @@ export const userRouter = createTRPCRouter({
         interests: user.interests,
         email: user.email,
         name: user.name,
+        verified: user.verified,
       };
     }),
 
@@ -117,5 +124,30 @@ export const userRouter = createTRPCRouter({
       }
 
       return { interests: user.interests };
+    }),
+
+  emailVerified: publicProcedure
+    .input(z.object({ email: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const user = await ctx.db.user.findUnique({
+        where: {
+          email: input.email,
+        },
+      });
+
+      if (!user) {
+        throw new Error('User not found');
+      }
+
+      const updatedUser = await ctx.db.user.update({
+        where: {
+          email: input.email,
+        },
+        data: {
+          verified: true,
+        },
+      });
+
+      return { message: `Email verified successfully for ${input.email}` };
     }),
 });

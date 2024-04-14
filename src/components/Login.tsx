@@ -5,7 +5,12 @@ import { api } from '~/utils/api';
 import { useRouter } from 'next/router';
 import Toast from './Toast';
 import { useDispatch } from 'react-redux';
-import { setInterests, setName, setEmail } from '~/redux/reducer/user';
+import {
+  setInterests,
+  setName,
+  setEmail,
+  setVerified,
+} from '~/redux/reducer/user';
 
 const Login = () => {
   const [emailValue, setEmailValue] = useState('');
@@ -21,8 +26,9 @@ const Login = () => {
       if (mutation.data.interests) {
         dispatch(setInterests(mutation.data.interests));
       }
+      dispatch(setVerified(mutation.data.verified ?? false));
 
-      router.push('/interests').catch((e) => {
+      router.push('/verify').catch((e) => {
         console.error('Failed to navigate', e);
       });
     }
@@ -60,7 +66,14 @@ const Login = () => {
         />
       </div>
       <div className={styles.verifybuttoncontainer}>
-        <button className={styles.signupbutton} onClick={handleLogin}>
+        <button
+          className={
+            mutation.isPending
+              ? styles.signupbuttonloading
+              : styles.signupbutton
+          }
+          onClick={handleLogin}
+        >
           LOGIN
         </button>
       </div>
@@ -70,7 +83,7 @@ const Login = () => {
         <Link href="/signup">
           <span className={styles.signinlink}> SIGN UP</span>
         </Link>
-        {mutation.isSuccess && <Toast message="This is a toast message" />}
+        {mutation.isSuccess && <Toast message="Login successful" />}
         {mutation.isError && <Toast message="Error logging in" />}
       </div>
     </div>
