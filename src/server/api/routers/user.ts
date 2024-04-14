@@ -1,5 +1,4 @@
 import { z } from 'zod';
-
 import { createTRPCRouter, publicProcedure } from '~/server/api/trpc';
 import { hashPassword, comparePassword } from '~/server/api/utils/auth';
 
@@ -34,6 +33,7 @@ export const userRouter = createTRPCRouter({
 
       return { message: `User ${user.name} created successfully` };
     }),
+
   login: publicProcedure
     .input(
       z.object({
@@ -61,6 +61,61 @@ export const userRouter = createTRPCRouter({
         throw new Error('Invalid password');
       }
 
-      return { message: 'User logged in successfully' };
+      return {
+        message: 'User logged in successfully',
+        interests: user.interests,
+        email: user.email,
+        name: user.name,
+      };
+    }),
+
+  saveUserInterests: publicProcedure
+    .input(
+      z.object({
+        email: z.string(),
+        interests: z.array(z.string()),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const user = await ctx.db.user.findUnique({
+        where: {
+          email: input.email,
+        },
+      });
+
+      if (!user) {
+        throw new Error('User not found');
+      }
+
+      const userInterests = await ctx.db.user.update({
+        where: {
+          email: input.email,
+        },
+        data: {
+          interests: {
+            set: input.interests,
+          },
+        },
+      });
+
+      console.log('User interests saved successfully', userInterests);
+
+      return { message: 'User interests saved successfully' };
+    }),
+
+  getUserInterests: publicProcedure
+    .input(z.object({ email: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const user = await ctx.db.user.findUnique({
+        where: {
+          email: input.email,
+        },
+      });
+
+      if (!user) {
+        throw new Error('User not found');
+      }
+
+      return { interests: user.interests };
     }),
 });

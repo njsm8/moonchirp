@@ -1,23 +1,26 @@
-import { type AppType } from "next/app";
-import { Inter } from "next/font/google";
+import { type AppType } from 'next/app';
+import { Inter } from 'next/font/google';
+import { Provider } from 'react-redux';
 
-import { api } from "~/utils/api";
+import { api } from '~/utils/api';
 
-import "~/styles/globals.css";
-import Layout from "~/components/Layout";
+import '~/styles/globals.css';
+import Layout from '~/components/Layout';
+import store from '~/redux/store';
 
 const inter = Inter({
-  subsets: ["latin"],
+  subsets: ['latin'],
 });
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <Layout>
-    <main className={inter.className}>
-      <Component {...pageProps} />
-    </main>
-    </Layout>
-
+    <Provider store={store}>
+      <Layout>
+        <main className={inter.className}>
+          <Component {...pageProps} />
+        </main>
+      </Layout>
+    </Provider>
   );
 };
 

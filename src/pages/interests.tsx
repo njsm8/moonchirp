@@ -1,9 +1,7 @@
-import Interests from "~/components/Interests";
+import Interests from '~/components/Interests';
 
 const InterestsPage = () => {
-    return (
-       <Interests />
-    );
-    }
+  return <Interests />;
+};
 
 export default InterestsPage;

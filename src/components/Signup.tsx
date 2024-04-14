@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import styles from './Signup.module.css';
 import { useEffect, useState } from 'react';
 import { api } from '~/utils/api';
+import Toast from './Toast';
 
 const Signup = () => {
   const [name, setName] = useState('');
@@ -23,10 +24,6 @@ const Signup = () => {
 
   const handleSignup = async () => {
     mutation.mutate({ name, email, password });
-
-    if (mutation.isError) {
-      alert('Error creating account');
-    }
   };
 
   return (
@@ -74,6 +71,8 @@ const Signup = () => {
           <span className={styles.signinlink}> LOGIN</span>
         </Link>
       </div>
+      {mutation.isError && <Toast message="Error creating account" />}
+      {mutation.isSuccess && <Toast message="Account created successfully" />}
     </div>
   );
 };
